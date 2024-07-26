@@ -1,0 +1,18 @@
+-- client.lua
+
+
+print('Client script loaded.')
+
+RegisterNetEvent('chat:addMessage')
+AddEventHandler('chat:addMessage', function(message)
+    local text = message.args[2]
+    TriggerEvent('chat:addMessage', {
+        args = {message.args[1], text},
+        color = message.color
+    })
+end)
+
+-- Example: Trigger a custom server event
+RegisterCommand('triggerEvent', function()
+    TriggerServerEvent('myCustomEvent', 'Hello from client!')
+end, false)
