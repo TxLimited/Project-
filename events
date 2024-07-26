@@ -13,7 +13,7 @@ RegisterCommand('announce', function(source, args, rawCommand)
         })
         print('Announcement: ' .. msg)
     else
-        -- Notify the player that they do not have permission
+        
         TriggerClientEvent('chat:addMessage', src, {
             args = {'System', 'You do not have permission to use this command.'},
             color = {255, 0, 0}
@@ -21,7 +21,7 @@ RegisterCommand('announce', function(source, args, rawCommand)
     end
 end, false)
 
--- Example: Player joining
+
 AddEventHandler('playerConnecting', function(playerName, setKickReason, deferrals)
     print(playerName .. ' is connecting to the server.')
 end)
