@@ -12,7 +12,7 @@ AddEventHandler('chat:addMessage', function(message)
     })
 end)
 
--- Example: Trigger a custom server event
+
 RegisterCommand('triggerEvent', function()
     TriggerServerEvent('myCustomEvent', 'Hello from client!')
 end, false)
