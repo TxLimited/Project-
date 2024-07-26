@@ -1,0 +1,41 @@
+print('Server script loaded.')
+
+
+RegisterCommand('announce', function(source, args, rawCommand)
+    -- Check if the command source is the server console or a player with admin permissions
+    local src = source
+    local msg = table.concat(args, ' ')
+    
+    if src == 0 or IsPlayerAceAllowed(src, 'command.announce') then
+        -- Announce the message to all players
+        TriggerClientEvent('chat:addMessage', -1, {
+            args = {'Server Announcement', msg},
+            color = {255, 0, 0}
+        })
+        print('Announcement: ' .. msg)
+    else
+        -- Notify the player that they do not have permission
+        TriggerClientEvent('chat:addMessage', src, {
+            args = {'System', 'You do not have permission to use this command.'},
+            color = {255, 0, 0}
+        })
+    end
+end, false)
+
+-- Example: Player joining
+AddEventHandler('playerConnecting', function(playerName, setKickReason, deferrals)
+    print(playerName .. ' is connecting to the server.')
+end)
+
+AddEventHandler('playerDropped', function(reason)
+    local src = source
+    local playerName = GetPlayerName(src)
+    print(playerName .. ' has left the server. Reason: ' .. reason)
+end)
+
+RegisterNetEvent('myCustomEvent')
+AddEventHandler('myCustomEvent', function(data)
+    local src = source
+    print('Custom event triggered by ' .. GetPlayerName(src) .. ' with data: ' .. data)
+    -- Perform actions based on the event
+end)
