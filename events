@@ -2,7 +2,6 @@ print('Server script loaded.')
 
 
 RegisterCommand('announce', function(source, args, rawCommand)
-    -- Check if the command source is the server console or a player with admin permissions
     local src = source
     local msg = table.concat(args, ' ')
     
